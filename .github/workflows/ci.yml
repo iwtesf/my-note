@@ -1,0 +1,39 @@
+name: Publish to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送
+
+permissions:
+  contents: write # 赋予流水线写入仓库的权限，用于推送到 gh-pages 分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # [关键] 必须设置为 0，否则 git-revision-date 插件无法获取文件的创建历史
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x # 使用最新的稳定版 Python 3
+          cache: 'pip' # 开启缓存，让后续构建速度飞快
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          # 如果 requirements.txt 中没有包含 mkdocs-material (有时 freeze 会漏掉基础包)，
+          # 可以取消下面这行的注释作为双重保险：
+          # pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-git-revision-date-localized-plugin
+
+      - name: Configure Git User
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force
