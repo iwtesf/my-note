@@ -1,0 +1,40 @@
+site_name: iwtesf's website
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/eye
+        name: Switch to dark mode
+      primary: deep purple
+      accent: red
+    - scheme: slate
+      toggle:
+        icon: material/eye-outline
+      primary: deep purple
+      accent: red
+  features:
+    - navigation.tabs
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - header.autohide
+    - search.highlight
+
+extra:
+  social:
+    - icon: fontawesome/solid/paper-plane 
+      link: mailto:iwtesf@gmail.com
+    - icon: fontawesome/brands/github
+      link: https://github.com/iwtesf
+  generator: false
+copyright: (Without) Copyright &copy; 2026 - 2026 iwtesf
+
+plugins:
+  - search
+  - awesome-pages
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - timetoread: # [!code ++] 注意这里的插件名是 timetoread
+      show_time: true
