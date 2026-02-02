@@ -1,7 +1,7 @@
 site_name: iwtesf's website
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: overrides  # 关键：必须和 name 对齐，且必须是 overrides
   palette:
     - scheme: default
       toggle:
@@ -39,3 +39,23 @@ plugins:
       enable_creation_date: true
   - timetoread: # [!code ++] 注意这里的插件名是 timetoread
       show_time: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      # 开启 Mermaid 支持
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

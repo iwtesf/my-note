@@ -1,11 +1,12 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block comments %}
+{% block content %}
+  {{ super() }}
+
   {% if page.meta.comments != false %}
-  
-  <h2 id="__comments">评论</h2>
-  
-  <script src="https://giscus.app/client.js"
+    <br><br> <hr>     <h2 id="__comments">评论</h2>
+    
+    <script src="https://giscus.app/client.js"
         data-repo="iwtesf/my-note"
         data-repo-id="R_kgDORG5Zpg"
         data-category="Announcements"
